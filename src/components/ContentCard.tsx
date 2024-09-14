@@ -1,7 +1,6 @@
 import { CheckCircle2, Play } from 'lucide-react';
 import { Bookmark } from '@prisma/client';
 import BookmarkButton from './bookmark/BookmarkButton';
-import { formatTime } from '@/lib/utils';
 import VideoThumbnail from './videothumbnail';
 import CardComponent from './CardComponent';
 import { motion } from 'framer-motion';
@@ -14,7 +13,6 @@ export const ContentCard = ({
   videoProgressPercent,
   bookmark,
   contentId,
-  contentDuration,
 }: {
   type: 'folder' | 'video' | 'notion';
   contentId?: number;
@@ -28,6 +26,14 @@ export const ContentCard = ({
   contentDuration?: number;
   uploadDate?: string;
 }) => {
+  // const formattedDate = createdAt?.toLocaleDateString('en-GB', {
+  //   day: '2-digit',
+  //   month: 'long',
+  //   year: 'numeric',
+  // });
+  // let image ;
+  // image = ""
+
   return (
     <motion.div
       onClick={onClick}
@@ -45,11 +51,8 @@ export const ContentCard = ({
       )}
       {type !== 'video' && (
         <div className="relative overflow-hidden rounded-md">
-          <CardComponent
-            title={title}
-            contentDuration={contentDuration && formatTime(contentDuration)}
-            type={type}
-          />
+          <CardComponent title={title} type={type} />
+          {/* <img src={image} alt={title} className="" /> */}
           {!!videoProgressPercent && (
             <div className="absolute bottom-0 h-1 w-full bg-[#707071]">
               <div
