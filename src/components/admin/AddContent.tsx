@@ -14,6 +14,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
+import { AddNotionMetadata } from './AddNotionMetadata';
 
 // TODO: remove AddContent
 
@@ -187,8 +188,8 @@ export const AddContent = ({
           onChange={(e) => setAdminPassword(e.target.value)}
           className="h-14"
         />
-        {/* {type === 'video' && <AddVideosMetadata onChange={setMetadata} />} */}
-        {/* {type === 'notion' && <AddNotionMetadata onChange={setMetadata} />} */}
+        {type === 'video' && <AddVideosMetadata onChange={setMetadata} />}
+        {type === 'notion' && <AddNotionMetadata onChange={setMetadata} />}
         <Button
           onClick={handleContentSubmit}
           disabled={loading}
@@ -205,7 +206,8 @@ const VARIANTS = 1;
 export function AddVideosMetadata({
   setValue
 }: {
-  setValue?: any
+  setValue?: any;
+  onChange?: any;
 }) {
   const [metadataGlobal, setMetadata] = useState({} as any);
   
